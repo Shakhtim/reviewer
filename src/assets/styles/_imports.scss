@@ -1,0 +1,70 @@
+/*
+Template Name: Travolo
+Template URL: https://html.vecurosoft.com/travolo
+Description: Travolo -  Travel Agency & Tour Booking HTML Template
+Author: Vecuro
+Author URI: https://themeforest.net/user/vecuro_themes/
+Version: 1.0.0
+*/
+/*=================================
+    CSS Index Here
+==================================*/
+/*
+
+01. Theme Base
+    1.1. Mixin
+    1.2. Function
+    1.3. Variable
+    1.4. Typography
+    1.5. Extend
+    1.7. Wordpress Default
+02. Reset
+    2.1. Container
+    2.2. Grid
+    2.3. Input
+    2.4. Slick Slider
+    2.5. Mobile Menu
+03. Utilities
+    3.1. Preloader
+    3.2. Buttons
+    3.3. Titles
+    3.4. Common
+    3.6. Font
+    3.7. Background
+    3.8. Text Color
+    3.9. Overlay
+    3.10. Animation
+04. Template Style
+    4.1. Widget
+    4.2. Header
+    4.3. Footer
+    4.4. Breadcumb
+
+05. Spacing
+
+*/
+/*=================================
+    CSS Index End
+==================================*/
+
+
+/*=================================
+   01. Theme Base
+==================================*/
+/*------------------- 1.1. Mixin -------------------*/
+@import './base/_mixin.scss';
+
+/*------------------- 1.2. Function -------------------*/
+@import './base/_function.scss';
+
+/*------------------- 1.3. Variable-------------------*/
+@import './base/_variable.scss';
+
+/*------------------- 1.5. Typography -------------------*/
+@import './base/_typography.scss';
+
+/*------------------- 1.6. Extend -------------------*/
+@import './base/_extend.scss';
+
+/*------------------- 1.7. Wordpress Default -------------------*/
+// @import 'base/wpdefault';

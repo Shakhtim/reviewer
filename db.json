@@ -1,0 +1,76 @@
+{
+  "reviews": [
+    {
+      "id": 1728387574558,
+      "name": "Тест",
+      "theme": "Сервис",
+      "text": "ОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззывОтззыв",
+      "rating": 4,
+      "autosalon": "dbr"
+    },
+    {
+      "id": 1728387579374,
+      "name": "",
+      "theme": "",
+      "text": "",
+      "rating": 2,
+      "autosalon": ""
+    },
+    {
+      "id": 1728389345712,
+      "name": "Test",
+      "text": "Comment",
+      "rating": 5,
+      "autosalon": "major"
+    },
+    {
+      "id": 1728389400383,
+      "name": "",
+      "text": "",
+      "rating": 5,
+      "autosalon": ""
+    },
+    {
+      "id": 1728389409567,
+      "name": "test",
+      "text": "ewtwerwe",
+      "rating": 3,
+      "autosalon": "major"
+    },
+    {
+      "id": 1728389567286,
+      "name": "sadasdsa",
+      "text": "asdasdas",
+      "rating": 5,
+      "autosalon": "major"
+    },
+    {
+      "id": 1728389785941,
+      "name": "еуые",
+      "text": "фвыфвфыв",
+      "rating": 5,
+      "autosalon": "dbr"
+    },
+    {
+      "id": 1728389815181,
+      "name": "sadasd",
+      "text": "dsadsa",
+      "rating": 4,
+      "autosalon": "dbr"
+    },
+    {
+      "id": 1728389899909,
+      "name": "ыфвфыв",
+      "text": "вфывыф",
+      "rating": 5,
+      "autosalon": "dbr"
+    },
+    {
+      "id": 1728389958556,
+      "name": "вфывыф",
+      "text": "фывыфвфы",
+      "rating": 4,
+      "autosalon": "dbr"
+    }
+  ]
+}

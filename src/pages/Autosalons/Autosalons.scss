@@ -1,0 +1,29 @@
+.autosalonsPage {
+    .outer-wrap {
+        margin-top: 70px;
+    }
+    &__image {
+        padding-top: 20px;
+        a {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        img {
+            max-width: 200px;
+        }
+    }
+    .vs-pagination {
+        button {
+            background: none !important;
+            border: none !important;
+        }
+    }
+}
+.autosalonPage {
+    &__image {
+        img {
+            width: 100%;
+        }
+    }
+}

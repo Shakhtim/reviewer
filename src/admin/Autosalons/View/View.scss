@@ -1,0 +1,61 @@
+.adminSalons {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        background-color: #e8e8e8;
+    }
+    &__body {
+        padding: 15px;
+        .pagination-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .itemsPerPage {
+            select {
+                max-width: 54px;
+                padding: 0 0 0 24px;
+            }
+        }
+        button {
+            &:hover {
+                color: #fff;
+            }
+        }
+        table {
+            border: none;
+            thead {
+
+            }
+            tbody {
+                tr {
+                    td {
+                        &#salonAction {
+                         display: flex;   
+                         align-items: center;
+                         justify-content: center;
+                         gap: 20px;
+                         border: none;
+                         button {
+                            background: none;
+                            border: none;
+                            &:hover {
+                                background-color: red;
+                            }
+                         }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td {
+    border: 1px solid #f4f4f4;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
