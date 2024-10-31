@@ -55,6 +55,25 @@
         margin-top: 30px;
     }
     &__similar {
+        .recent-post-wrap {
+            padding: 10px 0;
+        }
+    }
+    &__phone {
+        text-decoration: none;
+        color: #ff681a;
+    }
+    &__site {
+        text-decoration: none;
+        color: #ff681a;
+        text-transform: uppercase;
+    }
+    .product_meta {
+        span {
+            a {
+                text-transform: uppercase;
+            }
+        }
     }
 }
 
@@ -118,7 +137,9 @@
     padding-top: 180px;
     padding-bottom: 180px;
     background-color: #1c1c1c;
-
+    &__autosalon-view {
+        background-image: url("../../assets/img/banner/bg2.jpg");
+    }
   }
 
   
