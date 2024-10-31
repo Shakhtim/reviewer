@@ -1,6 +1,6 @@
 import React from "react";
 import { formatDate } from "../../scripts/utils.ts";
-import commentAuthor from '../../../src/assets/img/blog/comment-author-1.jpg';
+import commentAuthor from '../../../src/assets/img/author/author.webp';
 
 const ReviewList = ({reviews}) => {
     return (

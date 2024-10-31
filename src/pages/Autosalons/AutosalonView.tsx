@@ -40,7 +40,7 @@ const AutosalonsView = () => {
 
   return (
     <>
-      <div className="breadcumb-wrapper" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
+      <div className="breadcumb-wrapper breadcumb-wrapper__autosalon-view" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
         <div className="container z-index-common">
           <div className="breadcumb-content">
             <h1 className="breadcumb-title">{selectedAutosalon.nameSalon}</h1>
@@ -92,9 +92,9 @@ const AutosalonsView = () => {
                                       <span className="sku_wrapper">Название: <span className="sku">{selectedAutosalon.nameSalon}</span></span>
                                       <span className="sku_wrapper">Город: <span className="sku">{selectedAutosalon.city}</span></span>
                                       <span className="sku_wrapper">Адрес: <span className="sku">{selectedAutosalon.address}</span></span>
-                                      <span className="sku_wrapper">Телефон: <span className="sku">{selectedAutosalon.phone}</span></span>
+                                      <span className="sku_wrapper">Телефон: <a className="sku autosalonPage__phone" href={`tel:${selectedAutosalon.phone}`}>{selectedAutosalon.phone}</a></span>
                                       <span className="sku_wrapper">Режим работы: <span className="sku">{selectedAutosalon.schedule}</span></span>
-                                      <span className="sku_wrapper">Сайт: <a href={selectedAutosalon.site} className="sku">{selectedAutosalon.site}</a></span>
+                                      <span className="sku_wrapper">Сайт: <a href={`https://${selectedAutosalon?.site}`} className="sku autosalonPage__site">{selectedAutosalon?.site}</a></span>
                                     </div>
                                   </div>
                               </div>
