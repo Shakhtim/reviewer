@@ -1,5 +1,7 @@
 import express from 'express';
 import createReview from '../controllers/reviews/createReview.js';
+import getReviews from '../controllers/reviews/getReviews.js';
+import getReviewsBySalon from '../controllers/reviews/getReviewsBySalon.js';
 
 // const fetchOrder = require('../controllers/orders/fetchOrder');
 // const fetchOrders = require('../controllers/orders/fetchOrders');
@@ -10,7 +12,8 @@ const router = express.Router();
 
 router.route('/').post(createReview);
 // router.route('/by-id').post(fetchOrder);
-// router.route('/all').get(fetchOrders);
+router.route('/get').get(getReviews);
+router.route('/getBySalon/:nameSalon').get(getReviewsBySalon);
 // router.route('/edit').post(editOrder);
 // router.route('/delete').post(deleteOrder);
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import './SendForm.ts';
 import {useStars} from './SendForm.ts';
-import { useDispatch } from "react-redux";
-import { submitReview } from "../../redux/review/index.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { createReview } from "../../redux/review/index.ts";
 import { AppDispatch } from '../../store.ts';
 import { Review } from "../../redux/review/types.ts";
+import { getAutosalons } from '../../redux/admin/autosalon/index.ts';
 
 const SendForm = () => {
     const selectedStars = useStars();
@@ -12,10 +13,14 @@ const SendForm = () => {
     const [author, setAuthor] = useState('');
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
-    const [autosalon, setAutosalon] = useState('');
+    const [nameSalon, setNameSalon] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const { autosalons, status, error } = useSelector((state) => state.autosalon);
     const [errors, setErrors] = useState({});
 
+    useEffect(() => {
+        dispatch(getAutosalons());
+    }, [dispatch]);
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -23,7 +28,7 @@ const SendForm = () => {
         if (!author) errors.author = 'Поле "Ваше имя" не может быть пустым';
         if (!text) errors.text = 'Поле "Отзыв" не может быть пустым';
         if (selectedStars === 0) errors.selectedStars = 'Пожалуйста, выберите оценку';
-        if (!autosalon) errors.autosalon = 'Пожалуйста, выберите автосалон';
+        if (!nameSalon) errors.nameSalon = 'Пожалуйста, выберите автосалон';
 
         if (Object.keys(errors).length > 0) {
             setErrors(errors);
@@ -31,20 +36,19 @@ const SendForm = () => {
         }
 
         const review: Review = {
-            id: Date.now(),
             author,
             title,
             text,
             rating: selectedStars,
-            autosalon,
+            nameSalon,
         };
 
-        dispatch(submitReview(review));
+        dispatch(createReview(review));
 
         // очистите форму или сделайте что-то еще после отправки формы
-        setName('');
+        setAuthor('');
         setText('');
-        setAutosalon('');
+        setNameSalon('');
         setIsSubmitted(true); 
         setErrors({});
     };
@@ -59,13 +63,13 @@ const SendForm = () => {
                 <label className="h5">Выберите автосалон</label>
                 <div className="form-group">
                 <i className="fas fa-building"></i>
-                <select className="form-select form-group__salons" name="name" value={autosalon} onChange={(e) => setAutosalon(e.target.value)}>
-                    <option value="" selected>Автосалон</option>
-                    <option value="dbr">АЦ Добролюбова</option>
-                    <option value="major">Major</option>
-                    <option value="bereg">АЦ Береговой</option>
+                <select className="form-select form-group__salons" name="name" value={nameSalon} onChange={(e) => setNameSalon(e.target.value)}>
+                    <option value="empty" selected>Автосалон</option>
+                    {autosalons.map((salon) => (
+                        <option value={salon.nameSalon} selected>{salon.nameSalon}</option>
+                    ))}
                 </select>
-                {errors.autosalon && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.autosalon}</div>}
+                {errors.nameSalon && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.nameSalon}</div>}
                 </div>
             </div>
             <div className="stars_item-parent">

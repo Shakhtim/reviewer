@@ -1,12 +1,12 @@
 // определите интерфейсы здесь
 export interface Review {
     id: number;
-    autosalon: string;
+    nameSalon: string;
     rating: number;
     author: string;
     title?: string;
     text: string;
-    date: Date;
+    datePublished: Date;
   }
   
   export interface ReviewState {

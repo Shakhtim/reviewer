@@ -3,16 +3,16 @@ import mongoose, { Schema } from 'mongoose';
 // установка схемы
 const reviewScheme = new Schema(
     {
-        id: Number,
-        autosalon: String,
-        rating: Number,
         author: String,
+        nameSalon: String,
+        datePublished: { type: Date, default: Date.now },
+        rating: Number,
         title: String,
         text: String,
-        date: { type: Date, default: Date.now }
+        
     },
     { versionKey: false }
-);
+); 
 
 const Review = mongoose.model('Review', reviewScheme);
 

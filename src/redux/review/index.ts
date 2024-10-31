@@ -5,7 +5,7 @@ import { BASE_URL } from '../../scripts/utils.ts';
 
 const initialState : ReviewState = {
   reviews: [] as Review[],
-  loading: false,
+  status: 'idle',
   error: null,
 }
 
@@ -15,16 +15,35 @@ const reviewSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(submitReview.fulfilled, (state, action) => {
+      .addCase(createReview.fulfilled, (state, action) => {
         state.reviews.push(action.payload);
+      })
+      .addCase(getReviews.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          state.reviews = action.payload;
+      })
+      .addCase(getReviewBySalon.fulfilled, (state, action) => {
+        state.reviews = action.payload;
       })
   },
 });
 
 //создание отзыва
-export const submitReview = createAsyncThunk('review/create', async (object: Review) => {
-  const data = (await axios.post(BASE_URL + '/reviews', object)).data;
-  return data;
+export const createReview = createAsyncThunk('review/create', async (object: Review) => {
+  const response = (await axios.post(BASE_URL + '/reviews', object)).data;
+  return response;
+});
+
+//получение отзывов по автосалону
+export const getReviewBySalon = createAsyncThunk('review/getBySalon', async (nameSalon: String) => {
+  const response = (await axios.get(BASE_URL + `/reviews/getBySalon/${nameSalon}`)).data;
+  return response;
+});
+
+//получение отзывов
+export const getReviews = createAsyncThunk('review/get', async () => {
+  const response = await axios.get(BASE_URL + '/reviews/get');
+  return response.data;
 });
 
 export const { actions } = reviewSlice;
