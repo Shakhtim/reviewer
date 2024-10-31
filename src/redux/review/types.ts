@@ -3,8 +3,10 @@ export interface Review {
     id: number;
     autosalon: string;
     rating: number;
-    name?: string;
+    author: string;
+    title?: string;
     text: string;
+    date: Date;
   }
   
   export interface ReviewState {

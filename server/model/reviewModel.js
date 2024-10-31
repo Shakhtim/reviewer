@@ -6,8 +6,10 @@ const reviewScheme = new Schema(
         id: Number,
         autosalon: String,
         rating: Number,
-        name: String,
+        author: String,
+        title: String,
         text: String,
+        date: { type: Date, default: Date.now }
     },
     { versionKey: false }
 );

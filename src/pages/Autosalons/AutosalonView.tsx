@@ -1,29 +1,29 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAutosalonById } from "../../redux/admin/autosalon/index.ts"; // Убедитесь, что путь правильный
+import { getAutosalonById } from "../../redux/admin/autosalon/index.ts"; 
 
 const AutosalonsView = () => {
-  const { id } = useParams(); // Получаем ID из URL
+  const { id } = useParams(); 
   console.log(id);
   
   const dispatch = useDispatch();
   const { selectedAutosalon, status, error } = useSelector((state) => state.autosalon);
 
   useEffect(() => {
-    dispatch(getAutosalonById(id)); // Загружаем данные автосалона по ID
+    dispatch(getAutosalonById(id)); 
   }, [dispatch, id]);
 
   if (status === 'loading') {
-    return <div>Загрузка...</div>; // Обработка состояния загрузки
+    return <div>Загрузка...</div>;
   }
 
   if (status === 'failed') {
-    return <div>Ошибка: {error}</div>; // Обработка ошибок
+    return <div>Ошибка: {error}</div>;
   }
 
   if (!selectedAutosalon) {
-    return <div>Автосалон не найден</div>; // Обработка случая, когда автосалон не найден
+    return <div>Автосалон не найден</div>; 
   }
 
   return (

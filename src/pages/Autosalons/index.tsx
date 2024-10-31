@@ -106,11 +106,16 @@ const Autosalons = () => {
                                                             ))}
                                                         </div>
                                                         <h3 className="package-title">
-                                                            <Link to={`/autosalon/${salon._id}`}>{salon.nameSalon}</Link>
+                                                            <Link className=' autosalonsPage__name' to={`/autosalon/${salon._id}`}>{salon.nameSalon}</Link>
                                                         </h3>
-                                                        <p className="package-text">{salon.city}</p>
+                                                        <p className="package-text autosalonsPage__address">{salon.address}</p>
+                                                        <div className="package-meta">
+                                                            <a href={`tel:${salon.phone}`} className='autosalonsPage__phone'>
+                                                                <i className="fas fa-phone"></i>{salon.phone}
+                                                            </a>
+                                                        </div>
                                                         <div className="package-footer">
-                                                            <Link to="tour-booking.html" className="vs-btn">Подробнее</Link>
+                                                            <Link to={`/autosalons/${salon._id}`} className="vs-btn autosalonsPage__btn">Подробнее</Link>
                                                         </div>
                                                     </div>
                                                 </div>

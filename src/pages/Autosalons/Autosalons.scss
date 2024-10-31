@@ -1,4 +1,5 @@
 .autosalonsPage {
+    font-family: "Jost", sans-serif;
     .outer-wrap {
         margin-top: 70px;
     }
@@ -19,6 +20,23 @@
             border: none !important;
         }
     }
+    &__phone {
+        margin-right: 20px;
+        position: relative;
+        color: #000;
+        text-decoration: none;
+        transition: all ease 0.4s;
+        &:hover {
+            color: #ff681a;
+        }
+        i {
+            transform: scale(-1, 1);
+        }
+    }
+    &__btn {
+        text-decoration: none;
+    }
+    
 }
 .autosalonPage {
     &__image {
@@ -26,4 +44,5 @@
             width: 100%;
         }
     }
+    
 }
