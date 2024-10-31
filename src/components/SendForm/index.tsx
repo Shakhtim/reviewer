@@ -9,7 +9,8 @@ import { Review } from "../../redux/review/types.ts";
 const SendForm = () => {
     const selectedStars = useStars();
     const dispatch = useDispatch<AppDispatch>();
-    const [name, setName] = useState('');
+    const [author, setAuthor] = useState('');
+    const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [autosalon, setAutosalon] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -19,7 +20,7 @@ const SendForm = () => {
         event.preventDefault();
 
         const errors: { [key: string]: string } = {};
-        if (!name) errors.name = 'Поле "Ваше имя" не может быть пустым';
+        if (!author) errors.author = 'Поле "Ваше имя" не может быть пустым';
         if (!text) errors.text = 'Поле "Отзыв" не может быть пустым';
         if (selectedStars === 0) errors.selectedStars = 'Пожалуйста, выберите оценку';
         if (!autosalon) errors.autosalon = 'Пожалуйста, выберите автосалон';
@@ -31,7 +32,8 @@ const SendForm = () => {
 
         const review: Review = {
             id: Date.now(),
-            name,
+            author,
+            title,
             text,
             rating: selectedStars,
             autosalon,
@@ -81,15 +83,23 @@ const SendForm = () => {
                 <label className="h5">Ваше имя</label>
                 <div className="form-group ">
                     <i className="fas fa-user"></i>
-                    <input type="text" placeholder="Имя" value={name} onChange={(e) => setName(e.target.value)}/>
-                    {errors.name && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.name}</div>}
+                    <input type="text" placeholder="Имя" value={author} onChange={(e) => setAuthor(e.target.value)}/>
+                    {errors.author && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.author}</div>}
+                </div>
+            </div>
+            <div>
+                <label className="h5">Тема отзыва</label>
+                <div className="form-group ">
+                    <i className="fas fa-comment"></i>
+                    <input type="text" placeholder="Тема отзыва" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    {errors.title && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.title}</div>}
                 </div>
             </div>
             <div>
                 <label className="h5">Отзыв</label>
                 <div className="form-group">
                 <i className="fas fa-file"></i>
-                <textarea className="form-control__textarea" placeholder="Напишите подрбный отзыв" value={text} onChange={(e) => setText(e.target.value)}></textarea>
+                <textarea className="form-control__textarea" placeholder="Напишите подробный отзыв" value={text} onChange={(e) => setText(e.target.value)}></textarea>
                 {errors.text && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.text}</div>}
                 </div>
             </div>
