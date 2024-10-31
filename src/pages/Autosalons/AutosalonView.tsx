@@ -14,8 +14,13 @@ const AutosalonsView = () => {
 
   useEffect(() => {
     dispatch(getAutosalonById(id)); 
-    dispatch(getReviewBySalon(selectedAutosalon.nameSalon));
-  }, [dispatch, id, selectedAutosalon.nameSalon]);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (selectedAutosalon && selectedAutosalon.nameSalon) {
+      dispatch(getReviewBySalon(selectedAutosalon.nameSalon));
+    }
+  }, [dispatch, selectedAutosalon]);
 
   const randomAutosalons = getRandomItems(autosalons, 3);
   console.log(autosalons);
@@ -31,7 +36,7 @@ const AutosalonsView = () => {
   if (!selectedAutosalon) {
     return <div>Автосалон не найден</div>; 
   }
-  console.log(reviews);
+  console.log(selectedAutosalon);
 
   return (
     <>
@@ -39,6 +44,13 @@ const AutosalonsView = () => {
         <div className="container z-index-common">
           <div className="breadcumb-content">
             <h1 className="breadcumb-title">{selectedAutosalon.nameSalon}</h1>
+            <div className="breadcumb-menu-wrap">
+              <ul className="breadcumb-menu">
+                <li><Link to={"/"}>Главная</Link></li>
+                <li><Link to={"/autosalons"}>Автосалоны</Link></li>
+                <li>{selectedAutosalon.nameSalon}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -65,20 +77,24 @@ const AutosalonsView = () => {
                                         </ul>
                                     </div>
                                     </div>
-                                    <div className="product_meta">
-                                      <span className="sku_wrapper">SKU: <span className="sku">02</span>
-                                      </span>
-                                      <span className="posted_in">Category: <a href="#" rel="tag">Accessories</a>
-                                      </span>
-                                      <span>Tags: <a href="#" rel="tag">Camping</a><a href="#" rel="tag">Summer</a><a href="#" rel="tag">Vintage</a></span>
-                                    </div>
                                     <div className="row justify-content-between align-items-center">
                                       <div className="col-md-6">
                                         <h2 className="tab-title">{selectedAutosalon.nameSalon}</h2>
+                                        <p className="tour-price">{selectedAutosalon.address}</p>
                                       </div>
-                                      <div className="col-auto">
-                                        <p className="tour-price">{selectedAutosalon.city}</p>
-                                      </div>
+                                    </div>
+                                    <div className="product_meta">
+                                      <span className="sku_wrapper">Статус: 
+                                        <span className="sku" style={{ color: selectedAutosalon.status ? 'green' : 'red' }}>
+                                          {selectedAutosalon.status ? 'Работает' : 'Не работает'}
+                                        </span>
+                                      </span>
+                                      <span className="sku_wrapper">Название: <span className="sku">{selectedAutosalon.nameSalon}</span></span>
+                                      <span className="sku_wrapper">Город: <span className="sku">{selectedAutosalon.city}</span></span>
+                                      <span className="sku_wrapper">Адрес: <span className="sku">{selectedAutosalon.address}</span></span>
+                                      <span className="sku_wrapper">Телефон: <span className="sku">{selectedAutosalon.phone}</span></span>
+                                      <span className="sku_wrapper">Режим работы: <span className="sku">{selectedAutosalon.schedule}</span></span>
+                                      <span className="sku_wrapper">Сайт: <a href={selectedAutosalon.site} className="sku">{selectedAutosalon.site}</a></span>
                                     </div>
                                   </div>
                               </div>
