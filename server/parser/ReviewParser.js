@@ -15,6 +15,7 @@ const reviewSchema = new mongoose.Schema({
     datePublished: { type: Date, required: true },
     title: { type: String, required: false },
     text: { type: String, required: true },
+    rating: { type: Number, required: true },
 });
 
 // Создание модели для отзывов
@@ -67,19 +68,37 @@ async function fetchReviews(link, nameSalon) {
 
         const reviews = [];
         const nameSalon = $('.vcard.infosalon .fn.org').text().trim() || 'Без названия';
+        const city = $('.vcard.infosalon .locality').text().trim() || 'Город отсутствует';
         $('.jot-comment').each((index, element) => {
             const author = $(element).find('.jot-name [itemprop="name"]').text().trim() || 'Автор отсутствует';
-            const datePublished = $(element).find('[itemprop="datePublished"]').attr('content') || new Date();
+            const datePublished = $(element).find('[itemprop="datePublished"]').attr('content'); // Получаем строку даты в формате ISO
+            const dateParts = datePublished.split('-'); // Разбиваем строку даты на год, месяц и день
+
+            // Преобразуем строку в объект Date
+            const dateFormatted = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]); // Месяц в JavaScript индексируется с нуля
+
             const title = $(element).find('.jot-subject h3').text().trim() || '';
             const text = $(element).find('[itemprop="reviewBody"]').text().trim() || '';
 
-            reviews.push({
-                author,
-                nameSalon,
-                datePublished: new Date(datePublished),
-                title,
-                text,
-            });
+            // Извлечение рейтинга
+            const starsClass = $(element).find('ul.stars').attr('class'); // Получаем класс ul
+            let rating = starsClass ? parseInt(starsClass.split(' ')[1]) : NaN; // Извлекаем число из класса
+
+            // Устанавливаем рейтинг в 1, если он NaN
+            if (isNaN(rating)) {
+                rating = 1;
+            }
+            if(city === 'Москва'){
+                reviews.push({
+                    author,
+                    nameSalon,
+                    datePublished: dateFormatted, // Используем объект Date
+                    title,
+                    text,
+                    rating // Добавляем рейтинг в объект отзыва
+                });
+            }
+            
         });
 
         return reviews;
@@ -89,6 +108,7 @@ async function fetchReviews(link, nameSalon) {
         return [];
     }
 }
+
 
 async function saveReviewData(reviews) {
     for (const reviewData of reviews) {

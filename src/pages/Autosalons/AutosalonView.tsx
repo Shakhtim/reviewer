@@ -22,7 +22,7 @@ const AutosalonsView = () => {
     }
   }, [dispatch, selectedAutosalon]);
 
-  const randomAutosalons = getRandomItems(autosalons, 3);
+  const randomAutosalons = getRandomItems(autosalons, 10);
   console.log(autosalons);
 
   if (status === 'loading') {
@@ -40,7 +40,7 @@ const AutosalonsView = () => {
 
   return (
     <>
-      <div className="breadcumb-wrapper breadcumb-wrapper__autosalon-view" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
+      <section className="breadcumb-wrapper breadcumb-wrapper__autosalon-view" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
         <div className="container z-index-common">
           <div className="breadcumb-content">
             <h1 className="breadcumb-title">{selectedAutosalon.nameSalon}</h1>
@@ -53,7 +53,7 @@ const AutosalonsView = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
       <section className="space-bottom autosalonPage">
           <div className="outer-wrap">
               <div className="container">

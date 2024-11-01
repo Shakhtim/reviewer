@@ -22,6 +22,18 @@ const ReviewList = ({reviews}) => {
                         <h4 className="name h4">{review.author}</h4>
                         <p className="text">{review.text}</p>
                         <div className="reply_and_edit">
+                        <div className="tour-review">
+                            <ul>
+                                {Array.from({ length: 5 }, (_, index) => (
+                                    <i
+                                    key={index}
+                                    className={index < review.rating ? 'fas fa-star' : 'far fa-star'}
+                                    ></i>
+                                ))}
+                            </ul>
+                        </div>
+                        </div>
+                        <div className="reply_and_edit">
                             {/* <a href="#" className="replay-btn">Reply <i className="fas fa-reply"></i></a> */}
                         </div>
                         </div>

@@ -74,13 +74,13 @@ const Autosalons = () => {
 
     return (
         <>  
-            <div className="breadcumb-wrapper" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
+            <section className="breadcumb-wrapper breadcumb-wrapper__autosalons-view" data-bg-src="assets/img/breadcumb/breadcumb-bg.jpg">
                 <div className="container z-index-common">
                     <div className="breadcumb-content">
                         <h1 className="breadcumb-title">Все автосалоны</h1>
                     </div>
                 </div>
-            </div>
+            </section>
             <section className="space-bottom autosalonsPage">
                 <div className="outer-wrap">
                     <div className="container">

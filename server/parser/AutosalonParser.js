@@ -119,7 +119,7 @@ async function fetchSalonData(link) {
         const schedule = $('.vcard.infosalon .workhours').text().trim() || 'Расписание отсутствует';
         const site = $('.vcard.infosalon [itemprop="url"]').text().trim() || 'Сайт отсутствует';
         const imagePath = $('.img_h img').attr('src') || 'Картинка отсутствует';
-        
+
         // Сохраните полный путь к изображению
         const fullImagePath = imagePath.startsWith('http') ? imagePath : `${BASE_URL}/${imagePath}`;
         
@@ -132,6 +132,15 @@ async function fetchSalonData(link) {
         // Определение статуса как булево значение
         const status = statusText === 'Работает';
 
+        // Извлечение рейтинга
+        const starsClass = $('.show-stars').attr('class'); // Получаем класс div
+        let rating = starsClass ? parseInt(starsClass.match(/stars-(\d+)/)[1]) : NaN; // Извлекаем число из класса
+
+        // Устанавливаем рейтинг в 1, если он NaN
+        if (isNaN(rating)) {
+            rating = 1;
+        }
+
         // Логирование извлеченных данных
         console.log(`Данные для ${link}:`, {
             nameSalon,
@@ -142,6 +151,7 @@ async function fetchSalonData(link) {
             schedule,
             site,
             image: imageFilename,
+            rating, // Добавляем рейтинг в лог
         });
 
         if (city === 'Москва') {
@@ -154,6 +164,7 @@ async function fetchSalonData(link) {
                 schedule,
                 site,
                 image: imageFilename, // Сохраняем только имя файла
+                rating, // Сохраняем рейтинг
             };
         }
         
@@ -162,6 +173,7 @@ async function fetchSalonData(link) {
         return null;
     }
 }
+
 
 async function saveSalonData(salonData) {
     if (salonData) {
