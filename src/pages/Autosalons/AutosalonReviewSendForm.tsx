@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {useStars} from '../../components/SendForm/SendForm.ts';
+import { useDispatch, useSelector } from "react-redux";
+import { createReview } from "../../redux/review/index.ts";
 
 const AutosalonReviewSendForm = ({nameSalon}) => {
 
@@ -9,6 +11,7 @@ const AutosalonReviewSendForm = ({nameSalon}) => {
     const [text, setText] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errors, setErrors] = useState({});
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -28,7 +31,7 @@ const AutosalonReviewSendForm = ({nameSalon}) => {
             title,
             text,
             rating: selectedStars,
-            nameSalon: selectedAutosalon.nameSalon,
+            nameSalon: nameSalon,
         };
   
         dispatch(createReview(review));
@@ -77,8 +80,6 @@ const AutosalonReviewSendForm = ({nameSalon}) => {
                                     {errors.title && <div className={`error ${isSubmitted ? 'hidden' : ''}`}>{errors.title}</div>}
                                 </div>
                             </div>
-                            <div>
-                        </div>
                     </div>
 
                     <div>
@@ -94,8 +95,7 @@ const AutosalonReviewSendForm = ({nameSalon}) => {
                                 <button className="vs-btn style4 hero-form2__btn">Отправить отзыв</button>
                             </div>
                         </div>
-
-                </div>
+                    </div>
                 </form>
             </div>
         </>

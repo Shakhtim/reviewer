@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAutosalonById } from "../../redux/admin/autosalon/index.ts"; 
 import { getReviewBySalon } from "../../redux/review/index.ts"; 
-import { getReviewWord, getRandomItems } from "../../scripts/utils.ts";
+import { getReviewWord } from "../../scripts/utils.ts";
 import  AutosalonReviewSendForm  from "./AutosalonReviewSendForm.tsx";
 
 import { AppDispatch } from '../../store.ts';
@@ -12,7 +12,7 @@ import ReviewList from "./ReviewList.tsx";
 const AutosalonsView = () => {
   const { id } = useParams(); 
   const dispatch = useDispatch<AppDispatch>();
-  const { selectedAutosalon, autosalons, status, error } = useSelector((state) => state.autosalon);
+  const { selectedAutosalon, status, error } = useSelector((state) => state.autosalon);
   const { reviews } = useSelector((state) => state.review);
 
   useEffect(() => {
@@ -24,9 +24,6 @@ const AutosalonsView = () => {
       dispatch(getReviewBySalon(selectedAutosalon.nameSalon));
     }
   }, [dispatch, selectedAutosalon]);
-
-  const randomAutosalons = getRandomItems(autosalons, 10);
-  console.log(autosalons);
 
   if (status === 'loading') {
     return <div>Загрузка...</div>;
@@ -64,7 +61,7 @@ const AutosalonsView = () => {
                           <div className="col-lg-12">
                               <div className="filter-active tour-booking-active">
                                 <div className="info-image autosalonPage__image">
-                                    <img src={`/uploads/autosalons/${selectedAutosalon.image}`} alt="tours-img"/>
+                                    <img src={`/uploads/autosalons/${selectedAutosalon.image}`} alt={selectedAutosalon.image}/>
                                     <div className="tour-review">
                                         <ul>
                                           {Array.from({ length: 5 }, (_, index) => (
@@ -101,33 +98,6 @@ const AutosalonsView = () => {
                                           </div>
                                         </div>
                                       </div> 
-                                      {/* <div className="sidebar-area">
-                                        <div className="widget">
-                                          <h3 className="widget_title">Похожие автосалоны</h3>
-                                          <div className="widget-list">
-                                            {randomAutosalons.map((similarSalon) => (
-                                              <div className="recent-post-wrap" key={similarSalon._id}>
-                                                <div className="recent-post">
-                                                  <div className="media-img">
-                                                    <Link to={`/autosalons/${similarSalon._id}`}>
-                                                      <img src={`/uploads/autosalons/${similarSalon.image}`} alt={similarSalon.nameSalon}/>
-                                                    </Link>
-                                                  </div>
-                                                  <div className="media-body">
-                                                    <h4 className="post-title">
-                                                      <Link className="text-inherit" to={`/autosalons/${similarSalon._id}`}>{similarSalon.nameSalon}</Link>
-                                                    </h4>
-                                                    <div className="recent-post-meta">
-                                                      <i className="fas fa-location-arrow"></i>
-                                                      <Link to={`/autosalons/${similarSalon._id}`}>{similarSalon.address}</Link>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            ))}
-                                          </div>
-                                        </div>
-                                      </div> */}
                                       <AutosalonReviewSendForm nameSalon={selectedAutosalon.nameSalon}></AutosalonReviewSendForm>
                                   </div>
                               </div>

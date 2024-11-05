@@ -45,7 +45,6 @@ const SendForm = () => {
 
         dispatch(createReview(review));
 
-        // очистите форму или сделайте что-то еще после отправки формы
         setAuthor('');
         setText('');
         setNameSalon('');

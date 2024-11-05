@@ -25,6 +25,9 @@ const reviewSlice = createSlice({
       .addCase(getReviewBySalon.fulfilled, (state, action) => {
         state.reviews = action.payload;
       })
+      .addCase(getBestReviews.fulfilled, (state, action) => {
+        state.reviews = action.payload;
+      })
   },
 });
 
@@ -43,6 +46,12 @@ export const getReviewBySalon = createAsyncThunk('review/getBySalon', async (nam
 //получение отзывов
 export const getReviews = createAsyncThunk('review/get', async () => {
   const response = await axios.get(BASE_URL + '/reviews/get');
+  return response.data;
+});
+
+//получение отзывов с максимальным рейтингом
+export const getBestReviews = createAsyncThunk('review/getBest', async () => {
+  const response = await axios.get(BASE_URL + '/reviews/getBest');
   return response.data;
 });
 
